@@ -3,11 +3,11 @@
  */
 public class LinkedList<T> {
 
-    Node first;
-    Node last;
-    int size;
+    private Node first;
+    private Node last;
+    private int size;
 
-    public void add(T obj) {
+    public void addLast(T obj) {
         Node node = new Node(obj, last, null);
         if (first == null) {
             first = node;
@@ -25,7 +25,7 @@ public class LinkedList<T> {
             return;
 
         if (index == size) {
-            add(obj);
+            addLast(obj);
         } else {
             Node nextNode = get(index);
             Node preNode = nextNode.prev;
@@ -59,6 +59,23 @@ public class LinkedList<T> {
         }
 
         size--;
+    }
+
+    public void clear() {
+        if (size == 0)
+            return;
+
+        Node p = null;
+        while (first != null) {
+            p = first;
+            first = first.next;
+            p.next = null;
+            p.prev = null;
+            size--;
+        }
+
+        last = null;
+
     }
 
     public Node get(int index) {
@@ -119,5 +136,27 @@ public class LinkedList<T> {
         public T item;
         public Node prev;
         public Node next;
+    }
+
+    public static void main(String[] args) {
+        LinkedList linkedList = new LinkedList();
+        linkedList.add(0, new Integer(2));
+        linkedList.addLast(new Integer(4));
+        linkedList.addLast(new Integer(6));
+        linkedList.add(0, new Integer(8));
+        linkedList.add(2, new Integer(10));
+        linkedList.add(2, new Integer(12));
+        for (int i = 0; i < linkedList.getSize(); i++) {
+            System.out.println("Value:" + linkedList.get(i).item);
+        }
+        linkedList.remove(3);
+        System.out.println("翻转");
+        linkedList.reverse();
+        for (int i = 0; i < linkedList.getSize(); i++) {
+            System.out.println("Value:" + linkedList.get(i).item);
+        }
+
+        linkedList.clear();
+        System.out.println("size:" + linkedList.getSize());
     }
 }
