@@ -96,18 +96,21 @@ public class LinkedList<T> {
         return node;
     }
 
+    /**
+     * 就地翻转
+     */
     public void reverse() {
         if (size < 1)
             return;
 
-        Node p = first;//记录原首节点
+        Node p = first;//①记录原首结点
         while (p.next != null) {
-            Node q = p.next;//取出当前要翻转的节点
-            p.next = p.next.next;//原首节点指向翻转节点的下个节点
-            q.next = first;//翻转节点指向首节点
-            q.prev = null;//翻转节点上个节点指向当前首节点的上个节点
-            first.prev = q;//当前首节点上个节点置为翻转节点
-            first = q;//修改首节点位置
+            Node q = p.next;//取出当前要翻转的结点
+            p.next = p.next.next;//原首结点指向翻转结点的下个结点
+            q.next = first;//翻转结点指向首结点
+            q.prev = null;//翻转结点上个结点指向当前首结点的上个结点
+            first.prev = q;//当前首结点上个结点置为翻转结点
+            first = q;//修改首结点位置
         }
 
         last = p;
