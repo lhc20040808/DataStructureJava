@@ -116,6 +116,22 @@ public class LinkedList<T> {
         last = p;
     }
 
+    public void recursionReverse() {
+        reverse(first);
+    }
+
+    private Node reverse(Node node) {
+        if (node == null || node.next == null) {
+            first = node;
+            return node;
+        }
+
+        Node head = reverse(node.next);
+        node.next.next = node;
+        node.next = null;
+        return head;
+    }
+
     public int getSize() {
         return size;
     }
@@ -152,14 +168,19 @@ public class LinkedList<T> {
         for (int i = 0; i < linkedList.getSize(); i++) {
             System.out.println("Value:" + linkedList.get(i).item);
         }
-        linkedList.remove(3);
         System.out.println("翻转");
-        linkedList.reverse();
-        for (int i = 0; i < linkedList.getSize(); i++) {
-            System.out.println("Value:" + linkedList.get(i).item);
-        }
+        linkedList.recursionReverse();
+        System.out.println(linkedList);
+    }
 
-        linkedList.clear();
-        System.out.println("size:" + linkedList.getSize());
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        Node node = first;
+        while (node != null) {
+            sb.append(node.item + "  ");
+            node = node.next;
+        }
+        return sb.toString();
     }
 }
