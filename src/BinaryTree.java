@@ -1,7 +1,7 @@
 import java.util.Stack;
 
 /**
- * 排序二叉树
+ * 二叉排序树
  */
 public class BinaryTree {
 

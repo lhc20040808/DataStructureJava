@@ -1,5 +1,5 @@
 /**
- * Created by qgg on 2017/11/4.
+ * 双向链表
  */
 public class LinkedList<T> {
 
